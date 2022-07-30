@@ -1,15 +1,12 @@
 import express from "express";
 import morgan from "morgan"
 import cors from "cors";
-import auth from './routes/authentification.js'
-import security from './routes/security.js'
-import download from './routes/vocabulary.js'
-
-import connectToMongo from "./connections/mongo.js";
-
 import "dotenv/config";
 import "./extends/consoleLog.js"
-
+import connectToMongo from "./connections/mongo.js";
+import authentification from './routes/authentification.js'
+import vocabulary from './routes/vocabulary.js'
+import security from './routes/security.js'
 // EXIT: early exit when environment variables are not set
 if (!process.env.PORT) {
   console.log("please provide PORT number and try again");

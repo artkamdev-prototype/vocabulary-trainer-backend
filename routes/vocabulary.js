@@ -1,5 +1,12 @@
 import express from "express";
-import { sync_delete, sync_read, sync_update } from "../controllers/vocabulary/snyc_controller";
+import { cards_delete, cards_read, cards_update } from "../controllers/vocabulary/cards_controller.js";
+import { decks_cards_delete, decks_cards_read, decks_cards_update } from "../controllers/vocabulary/decks_cards_controller.js";
+import { decks_delete, decks_read, decks_update } from "../controllers/vocabulary/decks_controller.js";
+import { games_delete, games_read, games_update } from "../controllers/vocabulary/games_controller.js";
+import { search_read } from "../controllers/vocabulary/search_controller.js";
+import { sync_delete, sync_read, sync_update } from "../controllers/vocabulary/snyc_controller.js";
+import { users_decks_delete, users_decks_read, users_decks_update } from "../controllers/vocabulary/users_decks_controller.js";
+import { users_games_delete, users_games_read, users_games_update } from "../controllers/vocabulary/users_games_controller.js";
 
 const router = express.Router();
 

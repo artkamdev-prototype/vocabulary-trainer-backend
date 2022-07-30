@@ -1,7 +1,8 @@
 import express from "express";
-import { login_credentials_delete, login_credentials_read, login_credentials_update } from "../controllers/authentification/login_credentials_controller";
-import { login_jwt_delete, login_jwt_read, login_jwt_update } from "../controllers/authentification/login_jwt_controller";
-import { register_credentials_delete, register_credentials_read, register_credentials_update } from "../controllers/authentification/register_credentials_controller";
+
+import { login_credentials_delete, login_credentials_read, login_credentials_update } from "../controllers/authentification/login_credentials_controller.js";
+import { login_jwt_delete, login_jwt_read, login_jwt_update } from "../controllers/authentification/login_jwt_controller.js";
+import { register_credentials_delete, register_credentials_read, register_credentials_update } from "../controllers/authentification/register_credentials_controller.js";
 
 const router = express.Router();
 
