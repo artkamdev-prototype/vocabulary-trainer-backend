@@ -1,9 +1,9 @@
 import express from "express";
 import jwt from "jsonwebtoken";
-import User from '../models/user.js'
+import User from '../models/users.js'
 import { generateAccessToken } from '../jwt/jwt.js'
 
-const security_get = (req, res, next) => {
+const security = (req, res, next) => {
     console.log("----------------BOINNNNNNNNNNNG")
 
     try {
@@ -43,5 +43,5 @@ const security_get = (req, res, next) => {
 
 //////////
 export {
-    security_get,
+    security,
 }

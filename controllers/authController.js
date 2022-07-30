@@ -1,17 +1,17 @@
 import express from "express";
 import jwt from "jsonwebtoken";
-import User from '../models/user.js'
 import { generateAccessToken, verifyToken } from '../jwt/jwt.js'
+import users_model from "../models/users.js";
 
 ////////////////////////////////////////
 ////////// login
 ////////////////////////////////////////
 // handle login with JWT
-const login_get = (req, res) => {
+const login_put = async (req, res) => {
     console.log("----------------login_get")
 
     try {
-        const authorization = req.headers.authorization
+        const { authorization } = req.headers;
 
         // EXIT: Authorization is missing
         if (!authorization) {
@@ -37,7 +37,7 @@ const login_get = (req, res) => {
         })
 
         // EXIT: Token not ok
-        if(isError) {
+        if (isError) {
             return res.status(200).json({
                 success: false,
                 message: "Error! Verify Token error"
@@ -66,11 +66,15 @@ const login_post = async (req, res) => {
     console.log("----------------login_post")
 
     try {
-        const { email, password } = req.body;
-        const user = await User.findOne({ email: email });
+        const { email, password } = req.headers;
+
+
+
+
+        const existingUser = await users_model.findOne({ email: email });
 
         // EXIT: User is not found
-        if (!user) {
+        if (!existingUser) {
             return res.status(400).send({
                 success: false,
                 email: "Wrong Email!",
@@ -78,7 +82,7 @@ const login_post = async (req, res) => {
         }
 
         // EXIT: Password is wrong
-        if (!await user.validatePassword(password)) {
+        if (!await existingUser.validatePassword(password)) {
             return res.status(400).send({
                 success: false,
                 password: "Wrong Password",
@@ -86,7 +90,7 @@ const login_post = async (req, res) => {
         }
 
         // Generate token
-        const token = generateAccessToken(user)
+        const token = generateAccessToken(existingUser)
 
         // EXIT: Success
         return res.status(201).json({
@@ -115,7 +119,7 @@ const register_post = async (req, res) => {
 
     try {
         const { email, password } = req.body;
-        const user = await User.findOne({ email: email });
+        const user = await users_model.findOne({ email: email });
 
         // EXIT: User exist
         if (user) {
@@ -126,7 +130,7 @@ const register_post = async (req, res) => {
         }
 
         // Create new user
-        const newUser = await User.create({ email, password });
+        const newUser = await users_model.create({ email, password });
 
         // Generate token
         const token = generateAccessToken(newUser)

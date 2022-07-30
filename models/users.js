@@ -2,20 +2,29 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 const SALT_WORK_FACTOR = 10;
 
-const userSchema = mongoose.Schema({
+const users_schema = mongoose.Schema({
   email: {
     type: String,
-    required: true
+    required: true,
+    index: true
   },
   password: {
     type: String,
     required: true,
     minlength: 6
   },
+  last_login: {
+    type: Date,
+    required: true
+  },
+  last_update: {
+    type: Date,
+    required: true
+  }
 });
 
 // before save password in DB hash and salt it
-userSchema.pre("save", async function save(next) {
+users_schema.pre("save", async function save(next) {
   if (!this.isModified("password")) return next();
 
   try {
@@ -30,12 +39,10 @@ userSchema.pre("save", async function save(next) {
 });
 
 // hash and salt password and check if it match with the value in DB
-userSchema.methods.validatePassword = async function validatePassword(data) {
+users_schema.methods.validatePassword = async function validatePassword(data) {
   return bcrypt.compare(data, this.password);
 };
 
-
-
-
-const User = new mongoose.model("user", userSchema);
-export default User;
+//////////
+const users_model = new mongoose.model("users", users_schema);
+export default users_model;

@@ -1,12 +1,12 @@
 import express from "express";
-import User from '../models/user.js'
+import User from '../models/users.js'
 
 // download all decks, cards from a user
-const download_get = async (req, res) => {
-    console.log("----------------download_get")
+const download_post = async (req, res) => {
+    console.log("----------------download_post")
 
     try {
-
+        console.log(1111111)
         const data = await User.aggregate([
             { $match: { _id: 0 } },
 
@@ -20,6 +20,7 @@ const download_get = async (req, res) => {
 
             { $project: { email: 0, password: 0, users_decks: 0 } }
         ])
+        console.log(2222222222, data)
 
         // EXIT: SUCCESS
         return res.status(200).json({
@@ -38,5 +39,5 @@ const download_get = async (req, res) => {
 }
 
 export {
-    download_get
+    download_post
 }

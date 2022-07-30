@@ -3,7 +3,7 @@ import morgan from "morgan"
 import cors from "cors";
 import auth from './routes/auth.js'
 import security from './routes/security.js'
-import download from './routes/download.js'
+import download from './routes/vocabulary.js'
 
 import connectToMongo from "./connections/mongo.js";
 
@@ -51,9 +51,6 @@ connectToMongo().then((connection) => {
   // express.json - allows us to read the JSON body of a request
   // and store it in req.body
   app.use(express.json())
-  // express.static - allows us to serve static files ( in this case from public folder )
-  // this is how websites load their own CSS, JS, images etc. from a static public foler in the server. 
-  app.use(express.static('public'))
   // Middleware is happy
   app.use((req, res, next) => {
     var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
@@ -63,16 +60,21 @@ connectToMongo().then((connection) => {
   ////////////////////////////////////////
   ////////// routes
   ////////////////////////////////////////
-  // NO SECUIRTY: every route is accessable
+  // Without SECUIRTY: every route is accessable
   // login with credentials, login with jwt, register with credentials
-  app.use("/api/auth", auth);
+  app.use("/auth", auth);
   // app.use("/messages", messagesRouter);
 
-  // SECURITY: every route after here needed valide jwt to get access
+  // WITH SECURITY: every route after here needed valide jwt to get access
   app.use(security)
 
+  // express.static - allows us to serve static files ( in this case from public folder )
+  // this is how websites load their own CSS, JS, images etc. from a static public foler in the server. 
+  app.use(express.static('public'))
+
   // ROUTES who need jwt or we kick them
-  app.use("/api/download", download)
+  app.use("/vocabulary", vocabulary)
+  app.use("/search", vocabulary)
 
   // 404: url not found
   app.use((req, res, next) => {

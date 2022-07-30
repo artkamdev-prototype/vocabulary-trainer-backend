@@ -7,26 +7,39 @@ use('test');
 // users
 db.users.drop();
 db.users.insertMany([
-    { _id: 0, email: "aaa@gmail.com", password: "aaaaaaaa" },
-    { _id: 1, email: "bbb@gmail.com", password: "bbbbbbbbb" },
-    { _id: 2, email: "ccc@gmail.com", password: "cccccc" },
+    { _id: 0, email: "english", password: "$2b$10$eCPgKlecIhnQsAoMbb.r6uJLjGX5jCON3XBjWaGF3nNbWJqdHPBpG" },
+
+    { _id: 1, email: "mathe", password: "$2b$10$I6jT1MqnCyITVunqTQQJX.AR9LfgEfkkGWVCUgktxItsIneubhAtK" },
+
+    { _id: 2, email: "japanese", password: "$2b$10$EBAQ05zudCehb81iHMstz.0k3qUFs2V/pgDEE/3vkH/5rDisKXQSu" }
 ]);
 
 // users_decks
 db.users_decks.drop();
 db.users_decks.insertMany([
-    { _id: 0, users_id: 0, decks_id: 0 },
-    { _id: 1, users_id: 0, decks_id: 1 },
-    { _id: 2, users_id: 1, decks_id: 2 },
+    { _id: 0, users_id: 0, decks_id: 0, author: true },
+    { _id: 1, users_id: 0, decks_id: 1, author: true },
+
+    { _id: 2, users_id: 1, decks_id: 2, author: true },
+    { _id: 3, users_id: 1, decks_id: 3, author: true },
+    { _id: 4, users_id: 1, decks_id: 4, author: true },
+
+    { _id: 5, users_id: 2, decks_id: 5, author: true },
+    { _id: 6, users_id: 2, decks_id: 6, author: true }
 ]);
 
 // decks
 db.decks.drop();
 db.decks.insertMany([
-    { _id: 0, name: "english-deutsch 5 Klasse" },
-    { _id: 1, name: "english-chemie 5 Klasse" },
-    { _id: 2, name: "Chemie lernen für Klausur 20.03.2022" },
-    { _id: 3, name: "Vokabeltest latein" },
+    { _id: 0, name: "English 5", liked: true, thumbsUp: 3424, thumbsDown: 7657 },
+    { _id: 1, name: "English 6", liked: true, thumbsUp: 23, thumbsDown: 587576 },
+
+    { _id: 2, name: "Mathe 5", liked: false, thumbsUp: 3424, thumbsDown: 58578 },
+    { _id: 3, name: "Mathe 6", liked: true, thumbsUp: 2, thumbsDown: 566 },
+    { _id: 4, name: "Mathe 7", liked: false, thumbsUp: 55345, thumbsDown: 675 },
+
+    { _id: 5, name: "Japanese 5", liked: false, thumbsUp: 542, thumbsDown: 8088 },
+    { _id: 6, name: "Japanese 6", liked: true, thumbsUp: 524523, thumbsDown: 345 }
 ]);
 
 // decks_cards
@@ -34,13 +47,61 @@ db.decks_cards.drop();
 db.decks_cards.insertMany([
     { _id: 0, decks_id: 0, cards_id: 0 },
     { _id: 1, decks_id: 0, cards_id: 1 },
-    { _id: 2, decks_id: 1, cards_id: 2 },
+    { _id: 2, decks_id: 0, cards_id: 2 },
+
+    { _id: 3, decks_id: 1, cards_id: 3 },
+    { _id: 4, decks_id: 1, cards_id: 4 },
+    { _id: 5, decks_id: 1, cards_id: 5 },
+
+    { _id: 6, decks_id: 2, cards_id: 6 },
+    { _id: 7, decks_id: 2, cards_id: 7 },
+    { _id: 8, decks_id: 2, cards_id: 8 },
+
+    { _id: 9, decks_id: 3, cards_id: 9 },
+    { _id: 10, decks_id: 3, cards_id: 10 },
+    { _id: 11, decks_id: 3, cards_id: 11 },
+
+    { _id: 12, decks_id: 4, cards_id: 12 },
+    { _id: 13, decks_id: 4, cards_id: 13 },
+    { _id: 14, decks_id: 4, cards_id: 14 },
+
+    { _id: 15, decks_id: 5, cards_id: 15 },
+    { _id: 16, decks_id: 5, cards_id: 16 },
+    { _id: 17, decks_id: 5, cards_id: 17 },
+
+    { _id: 18, decks_id: 6, cards_id: 18 },
+    { _id: 19, decks_id: 6, cards_id: 19 },
+    { _id: 20, decks_id: 6, cards_id: 20 }
 ]);
 
 // cards
 db.cards.drop();
 db.cards.insertMany([
-    { _id: 0, front: "Hello", back: "Hallöchen" },
-    { _id: 1, front: "ich bin motiviert", back: "I'm hot =)" },
-    { _id: 2, front: "water", back: "H2O" },
+    { _id: 0, front: "English 5 - Q 1", back: "English 5 - A 1", rank: 0 },
+    { _id: 1, front: "English 5 - Q 2", back: "English 5 - A 2", rank: 0 },
+    { _id: 2, front: "English 5 - Q 3", back: "English 5 - A 3", rank: 0 },
+
+    { _id: 3, front: "English 6 - Q 1", back: "English 6 - A 1", rank: 0 },
+    { _id: 4, front: "English 6 - Q 2", back: "English 6 - A 2", rank: 0 },
+    { _id: 5, front: "English 6 - Q 3", back: "English 6 - A 3", rank: 0 },
+
+    { _id: 6, front: "Mathe 5 - Q 1", back: "Mathe 5 - A 1", rank: 0 },
+    { _id: 7, front: "Mathe 5 - Q 2", back: "Mathe 5 - A 2", rank: 0 },
+    { _id: 8, front: "Mathe 5 - Q 3", back: "Mathe 5 - A 3", rank: 0 },
+
+    { _id: 9, front: "Mathe 6 - Q 1", back: "Mathe 6 - A 1", rank: 0 },
+    { _id: 10, front: "Mathe 6 - Q 2", back: "Mathe 6 - A 2", rank: 0 },
+    { _id: 11, front: "Mathe 6 - Q 3", back: "Mathe 6 - A 3", rank: 0 },
+
+    { _id: 12, front: "Mathe 7 - Q 1", back: "Mathe 7 - A 1", rank: 0 },
+    { _id: 13, front: "Mathe 7 - Q 2", back: "Mathe 7 - A 2", rank: 0 },
+    { _id: 14, front: "Mathe 7 - Q 3", back: "Mathe 7 - A 3", rank: 0 },
+
+    { _id: 15, front: "Japanese 5 - Q 1", back: "Japanese 5 - A 1", rank: 0 },
+    { _id: 16, front: "Japanese 5 - Q 2", back: "Japanese 5 - A 2", rank: 0 },
+    { _id: 17, front: "Japanese 5 - Q 3", back: "Japanese 5 - A 3", rank: 0 },
+
+    { _id: 18, front: "Japanese 6 - Q 1", back: "Japanese 6 - A 1", rank: 0 },
+    { _id: 19, front: "Japanese 6 - Q 2", back: "Japanese 6 - A 2", rank: 0 },
+    { _id: 20, front: "Japanese 6 - Q 3", back: "Japanese 6 - A 3", rank: 0 }
 ]);
