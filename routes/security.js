@@ -1,15 +1,10 @@
 import express from "express";
-import { security } from '../controllers/securityController.js'
+import { security_read } from "../controllers/system/security_controller";
 
 const router = express.Router();
 
 router
     .route("*")
-    .get(security)
-
-router
-    .route("*")
-    .post(security)
-
+    .post(security_read)
 
 export default router;

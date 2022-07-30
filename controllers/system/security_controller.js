@@ -1,11 +1,4 @@
-import express from "express";
-import jwt from "jsonwebtoken";
-import User from '../models/users.js'
-import { generateAccessToken } from '../jwt/jwt.js'
-
-const security = (req, res, next) => {
-    console.log("----------------BOINNNNNNNNNNNG")
-
+const security_read = (req, res, next) => {
     try {
         const authorization = req.headers.authorization
 
@@ -43,5 +36,5 @@ const security = (req, res, next) => {
 
 //////////
 export {
-    security,
+    security_read,
 }

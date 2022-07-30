@@ -1,7 +1,13 @@
 import express from "express";
-import { download_post } from '../controllers/downloadController.js'
+import { sync_delete, sync_read, sync_update } from "../controllers/vocabulary/snyc_controller";
 
 const router = express.Router();
+
+router
+    .route("/sync")
+    .put(sync_update)
+    .post(sync_read)
+    .delete(sync_delete)
 
 router
     .route("/decks")
