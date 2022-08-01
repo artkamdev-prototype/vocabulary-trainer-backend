@@ -1,19 +1,23 @@
 import mongoose from "mongoose";
+import games_model from "./games";
+import users_model from "./users";
 
 const users_games_schema = mongoose.Schema({
     users_id: {
-        type: String,
+        type: mongoose.Schema.ObjectId,
+        ref: users_model,
         required: true,
         index: true
     },
     games_id: {
-        type: String,
+        type: mongoose.Schema.ObjectId,
+        ref: games_model,
         required: true,
         index: true
     },
     liked: {
         type: Number,
-        required: true
+        index: true
     }
 })
 

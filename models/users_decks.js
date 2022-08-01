@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import users_model from "./users";
-import decks_model from "./decks";
+import users_model from "./users.js";
+import decks_model from "./decks.js";
 
 const users_decks_schema = mongoose.Schema({
     users_id: {
@@ -16,12 +16,13 @@ const users_decks_schema = mongoose.Schema({
         index: true
     },
     author: {
-        type: Boolean,
-        required: true
+        type: mongoose.Schema.ObjectId,
+        ref: users_model,
+        required: true,
+        index: true
     },
     liked: {
-        type: Number,
-        required: true
+        type: Number
     }
 });
 

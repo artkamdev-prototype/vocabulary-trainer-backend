@@ -1,27 +1,19 @@
 import express from "express";
-
-import { login_credentials_delete, login_credentials_read, login_credentials_update } from "../controllers/authentification/login_credentials_controller.js";
-import { login_jwt_delete, login_jwt_read, login_jwt_update } from "../controllers/authentification/login_jwt_controller.js";
-import { register_credentials_delete, register_credentials_read, register_credentials_update } from "../controllers/authentification/register_credentials_controller.js";
+import { credentials_delete, credentials_read, credentials_update } from "../controllers/authentification/credentials_controller.js";
+import { jwt_delete, jwt_read, jwt_update } from "../controllers/authentification/jwt_controller.js";
 
 const router = express.Router();
 
 router
-    .route("/register/credentials")
-    .put(register_credentials_update)
-    .post(register_credentials_read)
-    .delete(register_credentials_delete)
+    .route("/credentials")
+    .put(credentials_update)
+    .post(credentials_read)
+    .delete(credentials_delete)
 
 router
-    .route("/login/credentials")
-    .put(login_credentials_update)
-    .post(login_credentials_read)
-    .delete(login_credentials_delete)
-
-router
-    .route("/login/jwt")
-    .put(login_jwt_update)
-    .post(login_jwt_read)
-    .delete(login_jwt_delete)
+    .route("/jwt")
+    .put(jwt_update)
+    .post(jwt_read)
+    .delete(jwt_delete)
 
 export default router;

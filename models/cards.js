@@ -3,11 +3,11 @@ import mongoose from "mongoose";
 const cards_schema = mongoose.Schema({
     front: {
         type: String,
-        default: "front-default-empty"
+        default: ""
     },
     back: {
         type: String,
-        default: "back-default-empty"
+        default: ""
     },
     rank: {
         type: Number,
@@ -16,5 +16,5 @@ const cards_schema = mongoose.Schema({
 })
 
 //////////
-const cards_model = new mongoose.model("users_decks", cards_schema);
+const cards_model = new mongoose.model("cards", cards_schema);
 export default cards_model;

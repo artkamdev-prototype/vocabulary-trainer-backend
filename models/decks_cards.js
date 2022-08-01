@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import decks_model from "./decks";
-import cards_model from "./cards";
+import decks_model from "./decks.js";
+import cards_model from "./cards.js";
 
 const decks_cards_schema = mongoose.Schema({
     decks_id: {

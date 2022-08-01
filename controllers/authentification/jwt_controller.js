@@ -1,6 +1,8 @@
+import { generateAccessToken, verifyToken } from "../../jwt/jwt.js";
+import users_model from "../../models/users.js";
 
 
-const login_jwt_read = async (req, res) => {
+const jwt_read = async (req, res) => {
     try {
         const { authorization } = req.body;
 
@@ -23,9 +25,16 @@ const login_jwt_read = async (req, res) => {
         }
 
         let isError = false
-        const decodedToken = verifyToken(token, err => {
-            isError = true
-        })
+        let decodedToken
+        verifyToken(
+            token,
+            (decoded) => {
+                decodedToken = decoded
+            },
+            err => {
+                isError = true
+            }
+        )
 
         // EXIT: Token not ok
         if (isError) {
@@ -52,13 +61,13 @@ const login_jwt_read = async (req, res) => {
     }
 }
 
-const login_jwt_update = async (req, res) => {}
+const jwt_update = async (req, res) => { }
 
-const login_jwt_delete = async (req, res) => {}
+const jwt_delete = async (req, res) => { }
 
 //////////
 export {
-    login_jwt_update,
-    login_jwt_read,
-    login_jwt_delete,
+    jwt_update,
+    jwt_read,
+    jwt_delete,
 }

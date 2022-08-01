@@ -1,7 +1,7 @@
-const security = (req, res, next) => {
+const security_middleware = (req, res, next) => {
     try {
-        const authorization = req.headers.authorization
-
+        const { authorization } = req.body;
+        
         // EXIT: Authorization is missing
         if (!authorization) {
             return res.status(200).json({
@@ -35,5 +35,5 @@ const security = (req, res, next) => {
 }
 //////////
 export {
-    security,
+    security_middleware,
 }

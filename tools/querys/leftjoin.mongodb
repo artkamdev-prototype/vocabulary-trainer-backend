@@ -4,16 +4,16 @@ use('test');
 // QUERY
 // users_decks
 db.users.aggregate([   
-{$match: {_id: 0}},
+{$match: {_id: ObjectId("62e57959cbaed3a29b364bf7")}},
 
-{$lookup: {from: "users_decks", localField: "_id",foreignField: "users_id",as: "users_decks"}},
+// {$lookup: {from: "users_decks", localField: "_id",foreignField: "users_id",as: "users_decks"}},
 
-{$lookup: {from: "decks", localField: "users_decks.decks_id",foreignField: "_id",as: "decks"}},
+// {$lookup: {from: "decks", localField: "users_decks.decks_id",foreignField: "_id",as: "decks"}},
 
-{$lookup: {from: "decks_cards", localField: "decks._id", foreignField: "decks_id",as: "decks_cards"}},
+// {$lookup: {from: "decks_cards", localField: "decks._id", foreignField: "decks_id",as: "decks_cards"}},
 
-{$lookup: {from: "cards", localField: "decks_cards.cards_id", foreignField: "_id",as: "cards"}},
+// {$lookup: {from: "cards", localField: "decks_cards.cards_id", foreignField: "_id",as: "cards"}},
 
-{$project: {email: 0, password: 0, users_decks: 0 }},
+// {$project: {email: 0, password: 0, users_decks: 0 }},
 
 ])

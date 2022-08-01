@@ -4,15 +4,15 @@ const decks_schema = mongoose.Schema({
     name: {
         type: String,
         index: true,
-        default: "name-default-empty"
+        default: "name-default-empty" + Date.now
     },
     shared: {
         type: Boolean,
         index: true,
-        default: false
+        required: true,
     }
 });
 
 //////////
-const decks_model = new mongoose.model("users_decks", decks_schema);
+const decks_model = new mongoose.model("decks", decks_schema);
 export default decks_model;

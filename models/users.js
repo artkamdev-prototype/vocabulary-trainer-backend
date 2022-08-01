@@ -15,7 +15,7 @@ const users_schema = mongoose.Schema({
   },
   last_login: {
     type: Date,
-    default: () => Date.now()
+    default: Date.now
   },
   last_update: {
     type: Date
