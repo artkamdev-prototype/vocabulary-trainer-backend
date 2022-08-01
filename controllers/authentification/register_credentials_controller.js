@@ -1,7 +1,7 @@
 import { generateAccessToken } from '../../jwt/jwt.js'
 import users_model from "../../models/users.js";
 
-const register_credentials_read = async (req, res) => {
+const register_credentials_update = async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await users_model.findOne({ email: email });
@@ -38,9 +38,9 @@ const register_credentials_read = async (req, res) => {
     }
 }
 
-const register_credentials_update = async (req, res) => {}
+const register_credentials_delete = async (req, res) => { }
 
-const register_credentials_delete = async (req, res) => {}
+const register_credentials_read = async (req, res) => { }
 
 //////////
 export {

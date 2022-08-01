@@ -1,4 +1,4 @@
-const security_read = (req, res, next) => {
+const security = (req, res, next) => {
     try {
         const authorization = req.headers.authorization
 
@@ -31,10 +31,9 @@ const security_read = (req, res, next) => {
             success: false,
             message: "login failed. Please try again later.",
         });
-    }    
+    }
 }
-
 //////////
 export {
-    security_read,
+    security,
 }

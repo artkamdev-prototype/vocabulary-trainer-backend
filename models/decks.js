@@ -3,13 +3,13 @@ import mongoose from "mongoose";
 const decks_schema = mongoose.Schema({
     name: {
         type: String,
-        required: true,
-        index: true
+        index: true,
+        default: "name-default-empty"
     },
     shared: {
         type: Boolean,
-        required: true,
-        index: true
+        index: true,
+        default: false
     }
 });
 

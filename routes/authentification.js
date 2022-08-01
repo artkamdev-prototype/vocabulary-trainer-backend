@@ -7,10 +7,10 @@ import { register_credentials_delete, register_credentials_read, register_creden
 const router = express.Router();
 
 router
-    .route("/login/jwt")
-    .put(login_jwt_update)
-    .post(login_jwt_read)
-    .delete(login_jwt_delete)
+    .route("/register/credentials")
+    .put(register_credentials_update)
+    .post(register_credentials_read)
+    .delete(register_credentials_delete)
 
 router
     .route("/login/credentials")
@@ -19,9 +19,9 @@ router
     .delete(login_credentials_delete)
 
 router
-    .route("/register/credentials")
-    .put(register_credentials_update)
-    .post(register_credentials_read)
-    .delete(register_credentials_delete)
+    .route("/login/jwt")
+    .put(login_jwt_update)
+    .post(login_jwt_read)
+    .delete(login_jwt_delete)
 
 export default router;

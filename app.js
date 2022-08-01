@@ -60,24 +60,23 @@ connectToMongo().then((connection) => {
   // Without SECUIRTY: every route is accessable
   // login with credentials, login with jwt, register with credentials
   app.use("/authentification", authentification);
-  // app.use("/messages", messagesRouter);
 
   // WITH SECURITY: every route after here needed valide jwt to get access
-  app.use(security)
+  // app.use(security)
 
   // express.static - allows us to serve static files ( in this case from public folder )
   // this is how websites load their own CSS, JS, images etc. from a static public foler in the server. 
-  app.use(express.static('public'))
+  // app.use(express.static('public'))
 
   // ROUTES who need jwt or we kick them
-  app.use("/vocabulary", vocabulary)
+  // app.use("/vocabulary", vocabulary)
 
   // 404: url not found
-  app.use((req, res, next) => {
-    console.log("404")
-    res.status(404).send("---------- 404, you failed!")
-    next()
-  })
+  // app.use((req, res, next) => {
+  //   console.log("404")
+  //   res.status(404).send("---------- 404, you failed!")
+  //   next()
+  // })
   ////////////////////////////////////////
   ////////// listen
   ////////////////////////////////////////

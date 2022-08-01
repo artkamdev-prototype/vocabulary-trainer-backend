@@ -1,7 +1,11 @@
+import { generateAccessToken } from "../../jwt/jwt.js";
+import users_model from "../../models/users.js";
 
 
 const login_credentials_read = async (req, res) => {
+    console.log("----------------", "login_credentials_read")
     try {
+        
         const { email, password } = req.body;
 
         const existingUser = await users_model.findOne({ email: email });

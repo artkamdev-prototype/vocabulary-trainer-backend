@@ -3,15 +3,15 @@ import mongoose from "mongoose";
 const cards_schema = mongoose.Schema({
     front: {
         type: String,
-        required: true
+        default: "front-default-empty"
     },
     back: {
         type: String,
-        required: true
+        default: "back-default-empty"
     },
     rank: {
         type: Number,
-        required: true
+        default: 0
     }
 })
 
