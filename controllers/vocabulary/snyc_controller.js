@@ -20,7 +20,7 @@ const sync_read = async (req, res) => {
         const userId = decodedToken.userId
 
         const data = await users_model.aggregate([
-            { $match: { _id: new mongoose.Types.ObjectId("62e7fbfec6da178c8cc4d5a6") } },
+            { $match: { _id: new mongoose.Types.ObjectId(userId) } },
 
             { $project: { "users": "$$ROOT" } },
 
