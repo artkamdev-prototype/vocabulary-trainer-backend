@@ -1,23 +1,99 @@
-### 
-GET http://localhost:9000/auth/login
-
-### 
-POST http://localhost:9000/api/auth/login
+### credentials registrieren
+PUT http://localhost:9000/authentification/credentials
 Content-Type: application/json
 
 {
-    "email":"aaaa.email", 
-    "password":"aaaa.password"
+    "email":"japanese", 
+    "password":"123456"
 }
 
-### GET MESSAGES ( AUTHORIZATION EXAMPLE with logged-in user ) 
-GET http://localhost:9000/api/auth/login
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRkMzEyNTkwZmVlZTExZGE4YzE0ODQiLCJlbWFpbCI6ImFhYWEuZW1haWwiLCJpc0xvZ2dlZEluIjp0cnVlLCJpYXQiOjE2NTg3NTg4OTYsImV4cCI6MTY1ODc2MjQ5Nn0.lfFXS7M2GeUpmVUm1RXfYAiummniTE8kIaiJTpQWk_A
+### credentials auth
+POST http://localhost:9000/authentification/credentials
+Content-Type: application/json
 
-### nase
-GET http://localhost:9000/api/download
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRkMzEyNTkwZmVlZTExZGE4YzE0ODQiLCJlbWFpbCI6ImFhYWEuZW1haWwiLCJpc0xvZ2dlZEluIjp0cnVlLCJpYXQiOjE2NTg3NTg4OTYsImV4cCI6MTY1ODc2MjQ5Nn0.lfFXS7M2GeUpmVUm1RXfYAiummniTE8kIaiJTpQWk_A
+{
+    "email":"english", 
+    "password":"123456"
+}
 
+### jwt auth
+POST http://localhost:9000/authentification/jwt
+Content-Type: application/json
+
+{
+    "authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmU1Nzk1OWNiYWVkM2EyOWIzNjRiZjciLCJlbWFpbCI6ImFhYWEuZW1haWwiLCJpc0xvZ2dlZEluIjp0cnVlLCJpYXQiOjE2NTkzNDQ5NjAsImV4cCI6MTY2Mjk0NDk2MH0.ZnxDF7yf0It7NKQTiiIzvGgs3XPmlLCYm4nGFCJx2C0"
+}
+
+### sync
+POST http://localhost:9000/vocabulary/sync
+Content-Type: application/json
+
+{
+    "authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmU3YWVkZmY0ZWZhMmJjOGEwNzNmMmQiLCJlbWFpbCI6ImVuZ2xpc2giLCJpc0xvZ2dlZEluIjp0cnVlLCJpYXQiOjE2NTkzNTY1NTMsImV4cCI6MTY2Mjk1NjU1M30.SvWRO5TQBhGQR40NaaOAXTmAK8Pr1AqG4UjY0bfgYEI"
+}
+
+### create decks
+PUT http://localhost:9000/vocabulary/decks
+Content-Type: application/json
+
+{
+    "authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmU3YWVkZmY0ZWZhMmJjOGEwNzNmMmQiLCJlbWFpbCI6ImVuZ2xpc2giLCJpc0xvZ2dlZEluIjp0cnVlLCJpYXQiOjE2NTkzNTY1NTMsImV4cCI6MTY2Mjk1NjU1M30.SvWRO5TQBhGQR40NaaOAXTmAK8Pr1AqG4UjY0bfgYEI",
+    "decks": [
+        {"name": "English 5", "shared": false },
+        {"name": "English 6", "shared": false },
+        {"name": "Mathe 5", "shared": false },
+        {"name": "Mathe 6", "shared": false },
+        {"name": "Mathe 7", "shared": false },
+        {"name": "Japanese 5", "shared": false }
+    ]
+}
+
+### create users_decks
+PUT http://localhost:9000/vocabulary/users_decks
+Content-Type: application/json
+
+{
+    "authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmU3YWVkZmY0ZWZhMmJjOGEwNzNmMmQiLCJlbWFpbCI6ImVuZ2xpc2giLCJpc0xvZ2dlZEluIjp0cnVlLCJpYXQiOjE2NTkzNTY1NTMsImV4cCI6MTY2Mjk1NjU1M30.SvWRO5TQBhGQR40NaaOAXTmAK8Pr1AqG4UjY0bfgYEI",
+    "users_decks": [
+       {
+        "users_id": "62e7fbfec6da178c8cc4d5a6", 
+        "decks_id": "62e818343cc968e3360bff12", 
+        "author": "62e7fbfec6da178c8cc4d5a6",
+        "liked": 0
+        }
+    ]
+}
+
+### create cards
+PUT http://localhost:9000/vocabulary/cards
+Content-Type: application/json
+
+{
+    "authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmU3YWVkZmY0ZWZhMmJjOGEwNzNmMmQiLCJlbWFpbCI6ImVuZ2xpc2giLCJpc0xvZ2dlZEluIjp0cnVlLCJpYXQiOjE2NTkzNTY1NTMsImV4cCI6MTY2Mjk1NjU1M30.SvWRO5TQBhGQR40NaaOAXTmAK8Pr1AqG4UjY0bfgYEI",
+    "cards": [
+       {
+        "front": "wwwwwwwwww"
+        },
+        {
+        "front": "eeeeeeeeee",
+        "_id": "62e7d721bb8eff5eae496b5a"
+        }
+    ]
+}
+
+### create decks_cards
+PUT http://localhost:9000/vocabulary/decks_cards
+Content-Type: application/json
+
+{
+    "authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmU3YWVkZmY0ZWZhMmJjOGEwNzNmMmQiLCJlbWFpbCI6ImVuZ2xpc2giLCJpc0xvZ2dlZEluIjp0cnVlLCJpYXQiOjE2NTkzNTY1NTMsImV4cCI6MTY2Mjk1NjU1M30.SvWRO5TQBhGQR40NaaOAXTmAK8Pr1AqG4UjY0bfgYEI",
+    "decks_cards": [
+       {
+        "decks_id": "62e818343cc968e3360bff12", 
+        "cards_id": "62e820cfa4bbe79733e751aa"
+        }
+    ]
+}
 
 
 
