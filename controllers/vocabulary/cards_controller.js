@@ -2,6 +2,7 @@ import cards_model from "../../models/cards.js";
 import { updateDB } from "../../utils/update.js";
 
 const cards_read = async (req, res) => {
+    console.log("cards_read")
     try {
         const { cards } = req.body;
 
@@ -13,7 +14,7 @@ const cards_read = async (req, res) => {
                 message: "Error! no cards!"
             });
         }
-        
+
         const data = await updateDB(cards, cards_model)
 
         // EXIT: Success
@@ -33,9 +34,11 @@ const cards_read = async (req, res) => {
 }
 
 const cards_update = async (req, res) => {
+    console.log("cards_update")
     try {
         const { cards } = req.body;
 
+        console.log(1111111, cards)
         //EXIT: no cards
         if (!cards) {
             console.log("length ")
@@ -44,6 +47,7 @@ const cards_update = async (req, res) => {
                 message: "Error! no cards!"
             });
         }
+        console.log(222222)
 
         const update = async () => Promise.all(cards.map(x => {
             const _id = x._id
@@ -53,8 +57,11 @@ const cards_update = async (req, res) => {
                 return Promise.resolve(cards_model.findOneAndUpdate({ _id }, x))
             }
         }))
+        console.log(33333)
 
         const data = await update()
+
+        console.log(444444, data)
 
         // EXIT: Success
         return res.status(201).json({

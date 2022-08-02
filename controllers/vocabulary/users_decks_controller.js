@@ -4,6 +4,7 @@ import { updateDB } from "../../utils/update.js";
 const users_decks_read = async (req, res) => {}
 
 const users_decks_update = async (req, res) => {
+    console.log("users_decks_update")
     try {
         const { users_decks } = req.body;
 

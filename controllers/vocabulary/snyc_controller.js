@@ -3,6 +3,7 @@ import { generateAccessToken, verifyToken } from "../../jwt/jwt.js";
 import users_model from "../../models/users.js";
 
 const sync_read = async (req, res) => {
+    console.log("sync_read")
     try {
         const { authorization } = req.body;
 
@@ -19,7 +20,9 @@ const sync_read = async (req, res) => {
         const userId = decodedToken.userId
 
         const data = await users_model.aggregate([
-            { $match: { _id: new mongoose.Types.ObjectId(userId) } },
+            { $match: { _id: new mongoose.Types.ObjectId("62e7fbfec6da178c8cc4d5a6") } },
+
+            { $project: { "users": "$$ROOT" } },
 
             { $lookup: { from: "users_decks", localField: "_id", foreignField: "users_id", as: "users_decks" } },
 
@@ -27,9 +30,7 @@ const sync_read = async (req, res) => {
 
             { $lookup: { from: "decks_cards", localField: "decks._id", foreignField: "decks_id", as: "decks_cards" } },
 
-            { $lookup: { from: "cards", localField: "decks_cards.cards_id", foreignField: "_id", as: "cards" } },
-
-            // { $project: { email: 0, password: 0, users_decks: 0 } }
+            { $lookup: { from: "cards", localField: "decks_cards.cards_id", foreignField: "_id", as: "cards" } }
         ])
 
         // EXIT: SUCCESS

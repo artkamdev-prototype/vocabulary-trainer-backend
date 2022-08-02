@@ -1,6 +1,8 @@
 const updateDB = async (arr, schema) => Promise.all(arr.map(x => {
+    const __v = x.__v
     const _id = x._id
-    if (!_id) {
+    
+    if (!__v) {
         return Promise.resolve(schema.create(x))
     } else {
         return Promise.resolve(schema.findOneAndUpdate({ _id }, x))

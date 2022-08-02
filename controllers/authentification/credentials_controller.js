@@ -3,11 +3,13 @@ import users_model from "../../models/users.js";
 
 
 const credentials_read = async (req, res) => {
+    console.log("credentials_read")
     try {        
         const { email, password } = req.body;
 
         const existingUser = await users_model.findOne({ email: email });
 
+        console.log(111111)
         // EXIT: User is not found
         if (!existingUser) {
             return res.status(400).send({
@@ -15,6 +17,7 @@ const credentials_read = async (req, res) => {
                 email: "Wrong Email!",
             });
         }
+        console.log(22222222)
 
         // EXIT: Password is wrong
         if (!await existingUser.validatePassword(password)) {
@@ -23,9 +26,11 @@ const credentials_read = async (req, res) => {
                 password: "Wrong Password",
             });
         }
+        console.log(33333333)
 
         // Generate token
         const token = generateAccessToken(existingUser)
+        console.log(44444444)
 
         // EXIT: Success
         return res.status(201).json({
@@ -46,9 +51,12 @@ const credentials_read = async (req, res) => {
 }
 
 const credentials_update = async (req, res) => {
+    console.log("credentials_update")
     try {
-        const { email, password } = req.body;
+        const { email, password, newPassword } = req.body;
         const user = await users_model.findOne({ email: email });
+
+        //TODO: implement update password; newPassword
 
         // EXIT: User exist
         if (user) {

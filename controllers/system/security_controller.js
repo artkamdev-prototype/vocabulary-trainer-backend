@@ -1,4 +1,5 @@
 const security_middleware = (req, res, next) => {
+    console.log("security_middleware")
     try {
         const { authorization } = req.body;
         

@@ -3,6 +3,7 @@ import users_model from "../../models/users.js";
 
 
 const jwt_read = async (req, res) => {
+    console.log("jwt_read", req.body)
     try {
         const { authorization } = req.body;
 
