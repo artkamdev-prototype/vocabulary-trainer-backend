@@ -10,7 +10,6 @@ const users_decks_update = async (req, res) => {
 
         //EXIT: no users_decks
         if (!users_decks) {
-            console.log("length ")
             return res.status(200).json({
                 success: false,
                 message: "Error! no users_decks!"
