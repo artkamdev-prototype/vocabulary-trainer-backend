@@ -9,7 +9,6 @@ const credentials_read = async (req, res) => {
 
         const existingUser = await users_model.findOne({ email: email });
 
-        console.log(111111)
         // EXIT: User is not found
         if (!existingUser) {
             return res.status(400).send({
@@ -17,7 +16,6 @@ const credentials_read = async (req, res) => {
                 email: "Wrong Email!",
             });
         }
-        console.log(22222222)
 
         // EXIT: Password is wrong
         if (!await existingUser.validatePassword(password)) {
@@ -26,11 +24,9 @@ const credentials_read = async (req, res) => {
                 password: "Wrong Password",
             });
         }
-        console.log(33333333)
 
         // Generate token
         const token = generateAccessToken(existingUser)
-        console.log(44444444)
 
         // EXIT: Success
         return res.status(201).json({
