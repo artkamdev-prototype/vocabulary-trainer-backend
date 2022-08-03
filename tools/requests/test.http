@@ -3,7 +3,7 @@ PUT http://localhost:9000/authentification/credentials
 Content-Type: application/json
 
 {
-    "email":"japanese", 
+    "email":"english", 
     "password":"123456"
 }
 

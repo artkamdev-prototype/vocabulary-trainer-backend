@@ -1,12 +1,6 @@
 const updateDB = async (arr, schema) => Promise.all(arr.map(x => {
-    const __v = x.__v
     const _id = x._id
-    
-    if (!__v) {
-        return Promise.resolve(schema.create(x))
-    } else {
-        return Promise.resolve(schema.findOneAndUpdate({ _id }, x))
-    }
+    return Promise.resolve(schema.findOneAndUpdate({ _id }, x, { upsert: true }))
 }))
 
 // TODO: wenn zeit ist dann testen ob das hier schneller ist
