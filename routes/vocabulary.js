@@ -4,6 +4,7 @@ import { decks_cards_delete, decks_cards_read, decks_cards_update } from "../con
 import { decks_delete, decks_read, decks_update } from "../controllers/vocabulary/decks_controller.js";
 import { games_delete, games_read, games_update } from "../controllers/vocabulary/games_controller.js";
 import { search_read } from "../controllers/vocabulary/search_controller.js";
+import { shared_read } from "../controllers/vocabulary/shared_controller.js";
 import { sync_delete, sync_read, sync_update } from "../controllers/vocabulary/snyc_controller.js";
 import { users_decks_delete, users_decks_read, users_decks_update } from "../controllers/vocabulary/users_decks_controller.js";
 import { users_games_delete, users_games_read, users_games_update } from "../controllers/vocabulary/users_games_controller.js";
@@ -55,5 +56,9 @@ router
 router
     .route("/search")
     .post(search_read)
+
+router
+    .route("/shared")
+    .post(shared_read)
 
 export default router;
