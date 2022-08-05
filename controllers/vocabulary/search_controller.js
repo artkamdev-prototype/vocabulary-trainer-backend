@@ -15,7 +15,7 @@ const search_read = async (req, res) => {
         const search_decks = await decks_model
             // .find({ shared: { $eq: true } })
             .find({ $and: [{ shared: { $eq: true } }, { name: { $regex: search_term } }] })
-            .sort({ last_update: 1 })
+            .sort({ last_update: -1 })
             .skip(skip)
             .limit(PAGE_SIZE)
             console.log(search_decks);
