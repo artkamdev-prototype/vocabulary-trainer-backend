@@ -7,8 +7,11 @@ const decks_read = async (req, res) => { }
 const decks_update = async (req, res) => {
     console.log("decks_update")
     try {
-        const { decks } = req.body;        
-        
+        const { decks } = req.body;
+
+        // set dates in decks
+        decks.map(x => x.last_update = Date.now())
+
         //EXIT: no decks
         if (!decks) {
             return res.status(200).json({

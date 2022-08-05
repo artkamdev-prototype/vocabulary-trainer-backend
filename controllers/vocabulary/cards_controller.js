@@ -8,7 +8,6 @@ const cards_read = async (req, res) => {
 
         //EXIT: no cards
         if (!cards) {
-            console.log("length ")
             return res.status(200).json({
                 success: false,
                 message: "Error! no cards!"
