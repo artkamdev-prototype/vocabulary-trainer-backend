@@ -10,19 +10,40 @@ const search_read = async (req, res) => {
 
         const skip = PAGE_SIZE * (page - 1)
 
-        //# Search steps:  
-        //## 1: search decks 
-        const search_decks = await decks_model
-            // .find({ shared: { $eq: true } })
-            .find({ $and: [{ shared: { $eq: true } }, { name: { $regex: search_term } }] })
-            .sort({ last_update: -1 })
-            .skip(skip)
-            .limit(PAGE_SIZE)
-            console.log(search_decks);
+        const data = await decks_model.aggregate([
+            {
+                $match: {
+                    shared: {
+                        $eq: true
+                    }
+                }
+            },
+            {
+                $lookup: {
+                    from: "decks_cards",
+                    localField: "_id",
+                    foreignField: "decks_id",
+                    as: "decks_cards"
+                }
+            },
+            {
+                "$project": {
+                    "_id": 1,
+                    "name": 1,
+                    "last_update": 1,
+                    "cards_size": { "$size": "$decks_cards" }
+                }
+            },
+            {
+                $sort: {
+                    last_update: -1
+                }
+            }
+        ])
 
         return res.status(201).json({
             success: true,
-            data: search_decks,
+            data: data,
         })
 
         // TODO: wenn zeit ist dann die Suche erweitern
