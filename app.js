@@ -38,9 +38,19 @@ connectToMongo().then((connection) => {
   // CORS - allows us to send requests from different webpages 
   // on different domains. if our frontend is on 3000 and our backend is on 8080
   // we need to enable CORS so the frontend can send requests to our backend
+  var allowedDomains = ['https://language-learning-by-games.netlify.app', 'http://localhost:3000'];
   app.use(cors({
-    origin: "http://localhost:3000" // or your netlify domain
-  }))
+    origin: function (origin, callback) {
+      // bypass the requests with no origin (like curl requests, mobile apps, etc )
+      if (!origin) return callback(null, true);
+
+      if (allowedDomains.indexOf(origin) === -1) {
+        var msg = `This site ${origin} does not have an access. Only specific domains are allowed to access it.`;
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    }
+  }));
 
   // express.json - allows us to read the JSON body of a request
   // and store it in req.body
