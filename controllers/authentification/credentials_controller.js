@@ -86,7 +86,12 @@ const credentials_update = async (req, res) => {
     }
 }
 
-const credentials_delete = async (req, res) => {}
+const credentials_delete = async (req, res) => {
+    console.log("credentials_delete")
+    
+
+
+}
 
 //////////
 export {
