@@ -47,7 +47,7 @@ const users_decks_delete = async (req, res) => {
             });
         }
 
-        const data = await users_decks_model({ _id: { $in: users_decks_ids } })
+        const data = await users_decks_model.deleteMany({ _id: { $in: users_decks_ids } })
         console.log(11111, "users_decks_delete", data)
 
         // EXIT: Success

@@ -48,7 +48,7 @@ const decks_cards_delete = async (req, res) => {
             });
         }
 
-        const data = await decks_cards_model({ _id: { $in: decks_cards_ids } })
+        const data = await decks_cards_model.deleteMany({ _id: { $in: decks_cards_ids } })
         console.log(11111, "decks_cards_delete", data)
         // EXIT: Success
         return res.status(201).json({
