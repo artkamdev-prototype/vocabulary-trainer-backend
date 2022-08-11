@@ -13,9 +13,19 @@ const search_read = async (req, res) => {
         const data = await decks_model.aggregate([
             {
                 $match: {
-                    shared: {
-                        $eq: true
-                    }
+                    $and: [
+                        {
+                            shared: {
+                                $eq: true
+                            }
+                        },
+                        {
+                            name: {
+                                $regex: search_term,
+                                '$options': 'i'
+                            }
+                        }
+                    ]
                 }
             },
             {
