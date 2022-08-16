@@ -67,8 +67,6 @@ const cards_delete = async (req, res) => {
     try {
         const { cards_ids } = req.body;
 
-        console.log(333333333333, cards_ids)
-
         //EXIT: no cards
         if (!cards_ids) {
             return res.status(200).json({
@@ -76,8 +74,6 @@ const cards_delete = async (req, res) => {
                 message: "Error! no cards_id!"
             });
         }
-
-        console.log(4444444444, cards_ids)
 
         const data = await cards_model.deleteMany({ _id: { $in: cards_ids } })
         console.log(11111, "cards_delete", data)

@@ -29,7 +29,7 @@ const users_decks_update = async (req, res) => {
         // EXIT: Error
         return res.status(500).send({
             message: "Error",
-            err: err.message,
+            err: err,
         });
     }
 }

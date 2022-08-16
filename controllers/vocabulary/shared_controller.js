@@ -7,12 +7,12 @@ const shared_read = async (req, res) => {
         const { decks_id } = req.body;
 
         const data = await decks_model.aggregate([
-            { $match: { $and: [{ _id: new mongoose.Types.ObjectId(decks_id) }, { shared: {$eq: true} }] } }, 
-            
+            { $match: { $and: [{ _id: new mongoose.Types.ObjectId(decks_id) }, { shared: { $eq: true } }] } },
+
             { $project: { "decks": "$$ROOT" } },
 
-            { $lookup: { from: "decks_cards", localField: "_id", foreignField: "decks_id", as: "decks_cards" } },            
-            
+            { $lookup: { from: "decks_cards", localField: "_id", foreignField: "decks_id", as: "decks_cards" } },
+
             { $lookup: { from: "cards", localField: "decks_cards.cards_id", foreignField: "_id", as: "cards" } }
 
         ])

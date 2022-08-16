@@ -4,7 +4,8 @@ const decks_schema = mongoose.Schema({
     name: {
         type: String,
         index: true,
-        default: "name-default-empty"
+        maxlength: [128, 'Name can\'t be greater than 128 characters'],
+        default: "New Deck"
     },
     shared: {
         type: Boolean,

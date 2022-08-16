@@ -5,12 +5,14 @@ const SALT_WORK_FACTOR = 10;
 const users_schema = mongoose.Schema({
   email: {
     type: String,
-    required: true,
+    required: [true, 'Email is required.'],
+    maxlength: [128, 'Email can\'t be greater than 128 characters'],
     index: true
   },
   password: {
     type: String,
-    required: true,
+    required: [true, 'Password is required.'],
+    maxlength: [128, 'Password can\'t be greater than 128 characters'],
     minlength: 6
   },
   last_login: {
@@ -22,6 +24,12 @@ const users_schema = mongoose.Schema({
   }
 });
 
+// validate
+users_schema.path('email').validate(async (email) => {
+  const emailCount = await mongoose.models.users.countDocuments({ email })
+  return !emailCount
+}, 'Email already exist')
+
 // before save password in DB hash and salt it
 users_schema.pre("save", async function save(next) {
   if (!this.isModified("password")) return next();
@@ -32,7 +40,8 @@ users_schema.pre("save", async function save(next) {
     this.password = hash;
 
     return next();
-  } catch (err) {
+  }
+  catch (err) {
     return next(err);
   }
 });
@@ -41,6 +50,8 @@ users_schema.pre("save", async function save(next) {
 users_schema.methods.validatePassword = async function validatePassword(data) {
   return bcrypt.compare(data, this.password);
 };
+
+
 
 //////////
 const users_model = new mongoose.model("users", users_schema);

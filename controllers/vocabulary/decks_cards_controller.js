@@ -10,7 +10,6 @@ const decks_cards_update = async (req, res) => {
 
         //EXIT: no decks_cards
         if (!decks_cards) {
-            console.log("length ")
             return res.status(200).json({
                 success: false,
                 message: "Error! no decks_cards!"

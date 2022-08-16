@@ -50,17 +50,6 @@ const credentials_update = async (req, res) => {
     console.log("credentials_update")
     try {
         const { email, password, newPassword } = req.body;
-        const user = await users_model.findOne({ email: email });
-
-        //TODO: implement update password; newPassword
-
-        // EXIT: User exist
-        if (user) {
-            return res.status(400).send({
-                success: false,
-                email: "registration failed. Maybe you already have an account?",
-            });
-        }
 
         // Create new user
         const newUser = await users_model.create({ email, password });
@@ -81,7 +70,7 @@ const credentials_update = async (req, res) => {
         // EXIT: Error
         return res.status(500).send({
             success: false,
-            message: "registration failed. Please try again later.",
+            message: err,
         });
     }
 }
